@@ -8,17 +8,18 @@
     userAgent: navigator.userAgent
   };
 
-  var visitorRef = activeVisitors.push(visitor, function () {
+  var activeVisitorRef = activeVisitors.push(visitor, function () {
     activeVisitors.child(visitorId).once('value', function (snapshot) {
       visitor.arrivedAt = snapshot.val().arrivedAt;
     });
   });
 
-  var visitorId = visitorRef.name();
+  var visitorId = activeVisitorRef.name();
 
   var pastVisitors = analytics.child('pastVisitors');
   visitor.leftAt = Firebase.ServerValue.TIMESTAMP;
   pastVisitors.child(visitorId).onDisconnect().set(visitor);
+  activeVisitorRef.onDisconnect().remove();
 
   var totalVisitors = analytics.child('totalVisitors');
   totalVisitors.once('value', function (snapshot) {
