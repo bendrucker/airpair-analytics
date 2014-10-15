@@ -42,6 +42,10 @@
       );
     });
 
+    activeVisitors.on('child_removed', function (snapshot) {
+      $('#active-visitor' + snapshot.name()).remove(); 
+    });
+
   });
 
 })(Firebase);
