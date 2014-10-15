@@ -1,8 +1,8 @@
 (function (Firebase) {
   var analytics = new Firebase('https://airpair-analytics-tutorial.firebaseio.com/');
-  var activeUsers = analytics.child('activeUsers');
+  var activeVisitors = analytics.child('activeVisitors');
 
-  activeUsers.push({
+  activeVisitors.push({
     path: window.location.pathname,
     arrivedAt: Firebase.ServerValue.TIMESTAMP,
     userAgent: navigator.userAgent
