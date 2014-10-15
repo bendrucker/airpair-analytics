@@ -25,7 +25,7 @@
       );
     });
 
-    var pastVisitors = analytics.child('pastVisitors');
+    var pastVisitors = analytics.child('pastVisitors').endAt().limit(3);
     pastVisitors.on('child_added', function (snapshot) {
       var n = snapshot.name();
       var v = snapshot.val();
@@ -44,6 +44,10 @@
 
     activeVisitors.on('child_removed', function (snapshot) {
       $('#active-visitor' + snapshot.name()).remove(); 
+    });
+
+    pastVisitors.on('child_removed', function (snapshot) {
+      $('#past-visitor' + snapshot.name()).remove(); 
     });
 
   });
