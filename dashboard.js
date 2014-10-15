@@ -1,4 +1,4 @@
-(function (Firebase) {
+(function (Firebase, $) {
   var analytics = new Firebase('https://airpair-analytics-tutorial.firebaseio.com/');
 
   $(document).on('ready', function () {
@@ -52,4 +52,4 @@
 
   });
 
-})(Firebase);
+})(Firebase, $);
