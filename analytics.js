@@ -8,12 +8,14 @@
     userAgent: navigator.userAgent
   };
 
-  var visitorId = activeVisitors.push(visitor, function () {
+  var visitorRef = activeVisitors.push(visitor, function () {
     activeVisitors.child(visitorId).once('value', function (snapshot) {
       visitor.arrivedAt = snapshot.val().arrivedAt;
     });
-  }).name();
-  
+  });
+
+  var visitorId = visitorRef.name();
+
   var pastVisitors = analytics.child('pastVisitors');
   visitor.leftAt = Firebase.ServerValue.TIMESTAMP;
   pastVisitors.child(visitorId).onDisconnect().set(visitor);
