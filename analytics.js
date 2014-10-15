@@ -9,9 +9,9 @@
   });
 
 
-  var activeVisitorsCount = analytics.child('activeVisitorsCount');
-  activeVisitorsCount.once('value', function (snapshot) {
-    activeVisitorsCount.set(snapshot.val() + 1);
+  var totalVisitors = analytics.child('totalVisitors');
+  totalVisitors.once('value', function (snapshot) {
+    totalVisitors.set(snapshot.val() + 1);
   });
-  
+
 })(Firebase);
